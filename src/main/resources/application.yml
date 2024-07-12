@@ -1,0 +1,136 @@
+spring:
+  profiles:
+    active: local
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 时区
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+
+# 配置文档 https://mybatis-flex.com/zh/base/configuration.html
+mybatis-flex:
+  mapper-package: cn.gojava.**.mapper
+  mapper-locations:
+    - classpath*:/mapper/**/*.xml
+  type-aliases-package:
+    - cn.gojava.**.entity
+  type-handlers-package: cn.gojava.**.typehandler
+  configuration:
+    # 自动驼峰命名规则（camel case）映射
+    map_underscore_to_camel_case: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    auto_mapping_behavior: FULL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    auto_mapping_unknown_column_behavior: NONE
+    # 关闭日志记录
+    # log_impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    # 是否打印 Logo banner
+    print-banner: true
+    # 全局的 ID 生成策略配置
+    key-config:
+      key-type: Auto
+    # 逻辑未删除值
+    normal-value-of-logic-delete: 0
+    # 逻辑已删除值(框架表均使用此值 禁止随意修改)
+    deleted-value-of-logic-delete: 2
+    # 默认的逻辑删除字段
+    logic-delete-column: deleted
+    # 默认的乐观锁字段
+    version-column: version
+  admin-config:
+    # 启动审计
+    enable: false
+
+magic-api:
+  resource:
+    type: git
+    git:
+      url: git@xxx.com:xxx/test.git
+      branch: master
+      # username和privateKey只需配置一种，两者同时存在privateKey优先。
+      privateKey: C:/Users/xx/.ssh/id_rsa
+      username: xxxx
+      password: xxxxx
+    # 本地存放路径
+    location: D:/data/magic-api
+  web: /magic/web # UI请求的界面以及UI服务地址
+  prefix: / # 接口前缀，可以不配置
+  auto-import-module: db  # 自动导入的模块
+  auto-import-package: java.lang.*,java.util.* #自动导包
+  allow-override: false #禁止覆盖应用接口
+  sql-column-case: camel #启用驼峰命名转换
+  editor-config: classpath:./magic-editor.js #编辑器配置
+  support-cross-domain: true # 跨域支持，默认开启
+  secret-key: 123456789 # 远程推送时的秘钥，未配置则不开启推送
+  push-path: /_magic-api-sync #远程推送的路径，默认为/_magic-api-sync
+  show-sql: true #配置打印SQL
+  compile-cache-size: 500 #配置编译缓存容量
+  persistence-response-body: true #是否持久化保存ResponseBody
+  date-pattern: # 配置请求参数支持的日期格式
+    - yyyy-MM-dd
+    - yyyy-MM-dd HH:mm:ss
+    - yyyyMMddHHmmss
+    - yyyyMMdd
+  response: |- #配置JSON格式，格式为magic-script中的表达式
+    {
+      code: code,
+      message: message,
+      data,
+      timestamp,
+      requestTime,
+      executeTime,
+    }
+  response-code:
+    success: 1 #执行成功的code值
+    invalid: 0 #参数验证未通过的code值
+    exception: -1 #执行出现异常的code值
+  banner: true # 打印banner
+  thread-pool-executor-size: 8 # async语句的线程池大小
+  throw-exception: false #执行出错时是否抛出异常
+  backup: #备份相关配置
+    enable: true #是否启用
+    max-history: -1 #备份保留天数，-1为永久保留
+    datasource: magic  #指定数据源（单数据源时无需配置，多数据源时默认使用主数据源，如果存在其他数据源中需要指定。）
+    table-name: magic_api_backup #使用数据库存储备份时的表名
+  crud: # CRUD相关配置
+    logic-delete-column: deleted #逻辑删除列
+    logic-delete-value: 1 #逻辑删除值
+  cache: # 缓存相关配置
+    capacity: 10000 #缓存容量
+    ttl: -1 # 永不过期
+    enable: true # 启用缓存
+  page:
+    size: size # 页大小的参数名称
+    page: page # 页码的参数名称
+    default-page: 1 # 未传页码时的默认首页
+    default-size: 10 # 未传页大小时的默认页大小
+  security: # 安全配置
+    username: admin # 登录用的用户名
+    password: 123456 # 登录用的密码
+  swagger:
+    version: 1.0
+    description: MagicAPI 接口信息
+    title: MagicAPI Swagger Docs
+    name: MagicAPI 接口
+    location: /v2/api-docs/magic-api/swagger2.json
+  debug:
+    timeout: 60 # 断点超时时间，默认60s
+
+# PageHelper分页插件
+pagehelper:
+  autoRuntimeDialect: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+#日志配置
+logging:
+  config: classpath:logback.xml
+  level:
+    cn.gojava.app: debug

@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "name": "mybatis-flex.mapper-package",
+      "type": "java.lang.String",
+      "description": "Description for mybatis-flex.mapper-package."
+    },
+    {
+      "name": "magic-api.resource.git.branch",
+      "type": "java.lang.String",
+      "description": "Description for magic-api.resource.git.branch."
+    },
+    {
+      "name": "magic-api.resource.git.url",
+      "type": "java.lang.String",
+      "description": "Description for magic-api.resource.git.url."
+    },
+    {
+      "name": "magic-api.resource.git.privateKey",
+      "type": "java.lang.String",
+      "description": "Description for magic-api.resource.git.privateKey."
+    },
+    {
+      "name": "magic-api.resource.git.username",
+      "type": "java.lang.String",
+      "description": "Description for magic-api.resource.git.username."
+    },
+    {
+      "name": "magic-api.resource.git.password",
+      "type": "java.lang.String",
+      "description": "Description for magic-api.resource.git.password."
+    }
+  ]
+}
