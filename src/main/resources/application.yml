@@ -52,12 +52,14 @@ magic-api:
   resource:
     type: git
     git:
-      url: git@github.com:zhiyi98/spring-magic-api.git
+      url: git@xxx.com:xxx/test.git
       branch: master
       # username和privateKey只需配置一种，两者同时存在privateKey优先。
-      privateKey: C:\Users\Administrator\.ssh\id_rsa
+      privateKey: C:/Users/xx/.ssh/id_rsa
+      username: xxxx
+      password: xxxxx
     # 本地存放路径
-    location: D:/magic-api
+    location: D:/data/magic-api
   web: /magic/web # UI请求的界面以及UI服务地址
   prefix: / # 接口前缀，可以不配置
   auto-import-module: db  # 自动导入的模块
@@ -112,6 +114,12 @@ magic-api:
   security: # 安全配置
     username: admin # 登录用的用户名
     password: 123456 # 登录用的密码
+  swagger:
+    version: 1.0
+    description: MagicAPI 接口信息
+    title: MagicAPI Swagger Docs
+    name: MagicAPI 接口
+    location: /v2/api-docs/magic-api/swagger2.json
   debug:
     timeout: 60 # 断点超时时间，默认60s
 
